@@ -19,7 +19,7 @@
     "reactstrap": "^8.4.1"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "react-scripts start",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "proxy": "http://localhost:3001",
