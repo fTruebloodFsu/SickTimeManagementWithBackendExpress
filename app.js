@@ -16,7 +16,7 @@ var app = express();
 // app.set('view engine', 'jade');
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(logger('dev'));
 app.use(express.json());
