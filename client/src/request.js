@@ -103,9 +103,16 @@ class MyForm extends React.Component {
         
         if(allFalse(errorsSub)){
             //alert("no errors");
+            
+            let shift = this.state.Shift.trim().toUpperCase();
+            shift = shift.replace('-', 'TO');
+            
+            let hours = this.state.HoursUsed
+            hours = Math.floor(hours)
+            
             enterNewRequest(this.state.FirstName.trim().toUpperCase(), this.state.LastName.trim().toUpperCase(), 
                 this.state.StoreNumber.trim().toUpperCase(), this.state.selectedDate.trim().toUpperCase(),
-                this.state.Shift.trim().toUpperCase(), this.state.HoursUsed.trim().toUpperCase());
+                shift, hours);
         }
       }
 
