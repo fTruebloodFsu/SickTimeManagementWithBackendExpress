@@ -7,6 +7,6 @@ var router = express.Router();
 // });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/src/index.js'));
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
 });
 module.exports = router;
