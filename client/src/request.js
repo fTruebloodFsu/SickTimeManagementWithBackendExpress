@@ -103,9 +103,9 @@ class MyForm extends React.Component {
         
         if(allFalse(errorsSub)){
             //alert("no errors");
-            enterNewRequest(this.state.FirstName, this.state.LastName, 
-                this.state.StoreNumber, this.state.selectedDate,
-                this.state.Shift, this.state.HoursUsed);
+            enterNewRequest(this.state.FirstName.trim().toUpperCase(), this.state.LastName.trim().toUpperCase(), 
+                this.state.StoreNumber.trim().toUpperCase(), this.state.selectedDate.trim().toUpperCase(),
+                this.state.Shift.trim().toUpperCase(), this.state.HoursUsed.trim().toUpperCase());
         }
       }
 
