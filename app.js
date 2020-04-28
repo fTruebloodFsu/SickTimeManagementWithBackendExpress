@@ -12,8 +12,11 @@ var enterNewRequestRouter = require('./routes/enterNewRequest');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(logger('dev'));
 app.use(express.json());
