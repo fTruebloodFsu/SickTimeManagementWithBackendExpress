@@ -97,7 +97,8 @@ function displayResultsReact(arr){
         
         if(allFalse(errorsSub)){
             //alert("no errors")
-            getRequests(this.state.FirstName, this.state.LastName, this.state.StoreNumber);
+            getRequests(this.state.FirstName.trim().toUpperCase(), 
+            this.state.LastName.trim().toUpperCase(), this.state.StoreNumber.trim().toUpperCase());
         }
     }
 
