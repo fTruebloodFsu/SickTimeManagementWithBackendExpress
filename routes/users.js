@@ -4,11 +4,13 @@ var router = express.Router();
 
 
 const pool = new Pool({
-    user: 'gpxuxminieypwk',
-    host: 'ec2-18-233-137-77.compute-1.amazonaws.com',
-    database: 'djtftmcbe2ish',
-    password: '2061726a14e08075c9059dc387696a4b8583072d7b7132e8f344f0588b6c100f',
-    port: 5432,
+	connectionString: process.env.DATABASE_URL,
+  	ssl: true,
+//     user: 'gpxuxminieypwk',
+//     host: 'ec2-18-233-137-77.compute-1.amazonaws.com',
+//     database: 'djtftmcbe2ish',
+//     password: '2061726a14e08075c9059dc387696a4b8583072d7b7132e8f344f0588b6c100f',
+//     port: 5432,
 })
 
 /* GET users listing. */
