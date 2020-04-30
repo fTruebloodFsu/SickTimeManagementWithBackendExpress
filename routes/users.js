@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 const pool = new Pool({
-	process.env.DATABASE_URL,
+	connectionString: process.env.DATABASE_URL,
 //     user: 'gpxuxminieypwk',
 //     host: 'ec2-18-233-137-77.compute-1.amazonaws.com',
 //     database: 'djtftmcbe2ish',
