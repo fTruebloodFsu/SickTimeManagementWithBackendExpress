@@ -74,6 +74,21 @@ async function enterNewRequest(fn, ln, sn, d, s, h){
     }
 }
 
+function removeInvalidChars(str){
+  const invalidChars = ['+', '-', '=', '*', '/', '%', '|', '^', '<', '>', '?', '`', '#', '~', '!', '&', '$', '(', ')'];
+  let result = str.split('');
+  
+  for(let i = 0; i < invalidChars.length; i++){
+    
+    result = result.filter(x => x != invalidChars[i]);
+    
+  }
+  
+  result = result.join('').trim().toUpperCase();
+  
+  return result;
+}
+
 class MyForm extends React.Component {
 
     constructor(props) {
@@ -103,16 +118,17 @@ class MyForm extends React.Component {
         
         if(allFalse(errorsSub)){
             //alert("no errors");
+            let fn = removeInvalidChars(this.state.FirstName);
+            let ln = removeInvalidChars(this.state.LastName);
+            let shift = removeInvalidChars(this.state.Shift);
             
-            let shift = this.state.Shift.trim().toUpperCase();
-            shift = shift.replace('-', 'TO');
+            let sn = this.state.StoreNumber;
+            sn = Math.floor(sn);
             
-            let hours = this.state.HoursUsed
-            hours = Math.floor(hours)
+            let hours = this.state.HoursUsed;
+            hours = Math.floor(hours);
             
-            enterNewRequest(this.state.FirstName.trim().toUpperCase(), this.state.LastName.trim().toUpperCase(), 
-                this.state.StoreNumber.trim().toUpperCase(), this.state.selectedDate.trim().toUpperCase(),
-                shift, hours);
+            enterNewRequest(fn, ln, sn, this.state.selectedDate.trim().toUpperCase(), shift, hours);
         }
       }
 
