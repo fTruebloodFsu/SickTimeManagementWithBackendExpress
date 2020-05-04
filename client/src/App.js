@@ -4,6 +4,7 @@ import MyNavBar from './navBar.js';
 import MyForm from './request.js';
 import MyFormCheck from './check.js';
 import Stats from './stats.js';
+import MyFormCheckBetween from "./checkBetweenDates.js"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path='/request' component={MyForm}/>
             <Route path='/check' component={MyFormCheck} />
             <Route path='/stats' component={Stats}/>
+            <Route path='/checkBetweenDates' component={MyFormCheckBetween}/>
           </Switch>
       </Router>
     </div>
