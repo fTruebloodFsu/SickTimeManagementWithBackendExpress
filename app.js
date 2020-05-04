@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var getUserByNameRouter = require('./routes/getUserByName');
 var enterNewRequestRouter = require('./routes/enterNewRequest');
 var deleteEntryRouter = require('./routes/deleteEntry');
+var checkBetweenRouter = require('./routes/getRequestsBetweenDates');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/users', usersRouter);
 app.use('/getUserByName', getUserByNameRouter);
 app.use('/enterNewRequest', enterNewRequestRouter);
 app.use('/deleteEntry', deleteEntryRouter)
+app.use('/getRequestsBetweenDates', checkBetweenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
