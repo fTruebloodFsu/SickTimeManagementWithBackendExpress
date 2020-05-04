@@ -46,6 +46,21 @@ async function getRequests(fn, ln, sn){
     return results.length;
 }
 
+async function deleteRequest(id){
+    const data = {
+        entryId: id,
+    };
+
+    const deleteEntry = await fetch('/deleteEntry', {method:"POST", body: JSON.stringify(data), 
+                                    headers: {"content-type": "application/json"}});
+                                
+    const results = await deleteEntry.json()
+    if(results.rowCount === 1){
+        alert("Deleted");
+    }
+}
+
+
 function displayResultsReact(arr){
 
     let resultList = document.getElementById("checkResults");
@@ -59,9 +74,15 @@ function displayResultsReact(arr){
         newDiv.style.border = "solid white 1px"
         newDiv.style.borderRadius = "5px"
         newDiv.style.margin = "2px"
-        newDiv.style.width = "90vw"
+        newDiv.style.width = "50vw"
         newDiv.style.paddingLeft = "5px"
         newDiv.style.alignContent = "center"
+        newDiv.onclick = function() {
+            const answer = window.confirm("Do you want delete this entry?")
+            if(answer){
+                deleteRequest(this.id);
+            }
+        }
 
         newDiv.innerHTML = "";
         let x = i + 1;
