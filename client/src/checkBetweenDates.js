@@ -56,7 +56,7 @@ function displayResultsReact(arr){
         newDiv.style.border = "solid white 1px"
         newDiv.style.borderRadius = "5px"
         newDiv.style.margin = "2px"
-        newDiv.style.width = "50vw"
+        newDiv.style.width = "95vw"
         newDiv.style.paddingLeft = "5px"
         newDiv.style.alignContent = "center"
 
