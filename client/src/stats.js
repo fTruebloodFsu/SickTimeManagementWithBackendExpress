@@ -41,7 +41,7 @@ class Example extends PureComponent {
         height={300}
         data={this.state.data}
         margin={{
-          top: 10, right: 10, bottom: 10, left: 10,
+          top: 1, right: 1, bottom: 1, left: 1,
         }}
       >
         <CartesianGrid stroke="#ffffff" />
@@ -50,8 +50,8 @@ class Example extends PureComponent {
         <Tooltip />
         <Legend />
         <Area type="monotone" dataKey="amt" fill="lightblue" stroke="#8884d8" />
-        <Bar dataKey="RequestBar" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="RequestLine" stroke="yellow" />
+        <Bar dataKey="RB" barSize={15} fill="#413ea0" />
+        <Line type="monotone" dataKey="RL" stroke="yellow" />
       </ComposedChart>
     );
   }
@@ -87,61 +87,61 @@ function getGdata(arr){
 
   const graphData = [
   {
-    name: '1', RequestLine: st1, RequestBar: st1, amt: st1,
+    name: '1', RL: st1, RB: st1, amt: st1,
   },
   {
-    name: '2', RequestLine: st2, RequestBar: st2, amt: st2,
+    name: '2', RL: st2, RB: st2, amt: st2,
   },
   {
-    name: '3', RequestLine: st3, RequestBar: st3, amt: st3,
+    name: '3', RL: st3, RB: st3, amt: st3,
   },
   {
-    name: '4', RequestLine: st4, RequestBar: st4, amt: st4,
+    name: '4', RL: st4, RB: st4, amt: st4,
   },
   {
-    name: '5', RequestLine: st5, RequestBar: st5, amt: st5,
+    name: '5', RL: st5, RB: st5, amt: st5,
   },
   {
-    name: '6', RequestLine: st6, RequestBar: st6, amt: st6,
+    name: '6', RL: st6, RB: st6, amt: st6,
   },
   {
-    name: '7', RequestLine: st7, RequestBar: st7, amt: st7,
+    name: '7', RL: st7, RB: st7, amt: st7,
   },
   {
-    name: '8', RequestLine: st8, RequestBar: st8, amt: st8,
+    name: '8', RL: st8, RB: st8, amt: st8,
   },
   {
-    name: '9', RequestLine: st9, RequestBar: st9, amt: st9,
+    name: '9', RL: st9, RB: st9, amt: st9,
   },
   {
-    name: '10', RequestLine: st10, RequestBar: st10, amt: st10,
+    name: '10', RL: st10, RB: st10, amt: st10,
   },
   {
-    name: '11', RequestLine: st11, RequestBar: st11, amt: st11,
+    name: '11', RL: st11, RB: st11, amt: st11,
   },
   {
-    name: '12', RequestLine: st12, RequestBar: st12, amt: st12,
+    name: '12', RL: st12, RB: st12, amt: st12,
   },
   {
-    name: '13', RequestLine: st13, RequestBar: st13, amt: st13,
+    name: '13', RL: st13, RB: st13, amt: st13,
   },
   {
-    name: '14', RequestLine: st14, RequestBar: st14, amt: st14,
+    name: '14', RL: st14, RB: st14, amt: st14,
   },
   {
-    name: '15', RequestLine: st15, RequestBar: st15, amt: st15,
+    name: '15', RL: st15, RB: st15, amt: st15,
   },
   {
-    name: '19', RequestLine: st19, RequestBar: st19, amt: st19,
+    name: '19', RL: st19, RB: st19, amt: st19,
   },
   {
-    name: '20', RequestLine: st20, RequestBar: st20, amt: st20,
+    name: '20', RL: st20, RB: st20, amt: st20,
   },
   {
-    name: '21', RequestLine: st21, RequestBar: st21, amt: st21,
+    name: '21', RL: st21, RB: st21, amt: st21,
   },
   {
-    name: '22', RequestLine: st22, RequestBar: st22, amt: st22,
+    name: '22', RL: st22, RB: st22, amt: st22,
   },
   ]
   console.log(graphData);
