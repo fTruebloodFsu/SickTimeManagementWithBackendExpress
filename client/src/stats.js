@@ -85,7 +85,7 @@ class RadarGraph extends PureComponent {
 
   render() {
     return (
-      <RadarChart cx={300} cy={250} outerRadius={200} width={400} height={400} data={this.state.data}>
+      <RadarChart cx={200} cy={200} outerRadius={200} width={400} height={400} data={this.state.data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" stroke="#ffffff" />
         <PolarRadiusAxis />
