@@ -89,7 +89,7 @@ class RadarGraph extends PureComponent {
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" stroke="#ffffff" />
         <PolarRadiusAxis />
-        <Radar name="LC" dataKey="A" stroke="white" fill="lightblue" fillOpacity={0.6} />
+        <Radar name="LC" dataKey="A" stroke="#ffffff" fill="lightblue" fillOpacity={0.6} />
       </RadarChart>
     );
   }
@@ -251,7 +251,6 @@ function Stats() {
           Sick Time Requests Per Store
           <Example/>
         </div>
-        <br>
         <div className="App-header">
           Sick Time Requests Per Day Of The Week
           <RadarGraph/>
