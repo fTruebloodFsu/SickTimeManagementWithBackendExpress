@@ -85,7 +85,7 @@ class RadarGraph extends PureComponent {
 
   render() {
     return (
-      <RadarChart cx={300} cy={250} outerRadius={200} width={500} height={500} data={this.state.data}>
+      <RadarChart cx={300} cy={250} outerRadius={200} width={400} height={400} data={this.state.data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" stroke="#ffffff" />
         <PolarRadiusAxis />
@@ -251,6 +251,7 @@ function Stats() {
           Sick Time Requests Per Store
           <Example/>
         </div>
+        <br>
         <div className="App-header">
           Sick Time Requests Per Day Of The Week
           <RadarGraph/>
