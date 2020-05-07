@@ -1,7 +1,7 @@
 import React, { useState, PureComponent } from 'react';
 import {
   ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  Legend,
+  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from 'recharts';
 import './App.css';
 
@@ -53,6 +53,44 @@ class Example extends PureComponent {
         <Bar dataKey="RB" barSize={15} fill="#413ea0" />
         <Line type="monotone" dataKey="RL" stroke="yellow" />
       </ComposedChart>
+    );
+  }
+}
+
+class RadarGraph extends PureComponent {
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/9xopwa9v/';  
+
+  constructor(props){
+    super(props);
+    this.state = {
+      data: []
+    }
+  }
+
+
+  getData(){
+    setTimeout(() => {
+      const DaysData = getDaysData(allData);
+      this.setState({
+        data: DaysData
+      })
+    }, 7000)
+    console.log(this.state.data)
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
+
+  render() {
+    return (
+      <RadarChart cx={300} cy={250} outerRadius={200} width={500} height={500} data={this.state.data}>
+        <PolarGrid />
+        <PolarAngleAxis dataKey="subject" stroke="#ffffff" />
+        <PolarRadiusAxis />
+        <Radar name="LC" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+      </RadarChart>
     );
   }
 }
@@ -149,6 +187,46 @@ function getGdata(arr){
   return graphData;
 }
 
+function getDaysData(arr){
+  const mon = arr.filter(x => new Date(x.requestdate).getDay() === 1).length;
+  const tue = arr.filter(x => new Date(x.requestdate).getDay() === 2).length;
+  const wed = arr.filter(x => new Date(x.requestdate).getDay() === 3).length;
+  const thur = arr.filter(x => new Date(x.requestdate).getDay() === 4).length;
+  const fri = arr.filter(x => new Date(x.requestdate).getDay() === 5).length;
+  const sat = arr.filter(x => new Date(x.requestdate).getDay() === 6).length;
+  const sun = arr.filter(x => new Date(x.requestdate).getDay() === 0).length;
+
+  const theDays = [mon, tue, wed, thur, fri, sat, sun];
+  const sortedDays = theDays.sort(function(a,b){return b-a});
+  const max = sortedDays[0] + 10;
+
+  const daysData = [
+    {
+      subject: 'Mon', A: mon, fullMark: max,
+    },
+    {
+      subject: 'Tue', A: tue, fullMark: max,
+    },
+    {
+      subject: 'Wed', A: wed, fullMark: max,
+    },
+    {
+      subject: 'Thur', A: thur, fullMark: max,
+    },
+    {
+      subject: 'Fri', A: fri, fullMark: max,
+    },
+    {
+      subject: 'Sat', A: sat, fullMark: max,
+    },
+    {
+      subject: 'Sun', A: sun, fullMark: max,
+    },
+  ];
+
+  return daysData;
+}
+
 function Stats() {
 
   const [totRequests, setValue] = useState(0);
@@ -172,6 +250,10 @@ function Stats() {
         <div className="App-header">
           Sick Time Requests Per Store
           <Example/>
+        </div>
+        <div className="App-header">
+          Sick Time Requests Per Day Of The Week
+          <RadarGraph/>
         </div>
       </div>
     );
