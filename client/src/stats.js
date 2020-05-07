@@ -38,7 +38,7 @@ class Example extends PureComponent {
     return (
       <ComposedChart
         width={600}
-        height={400}
+        height={350}
         data={this.state.data}
         margin={{
           top: 1, right: 1, bottom: 1, left: 1,
