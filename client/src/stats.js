@@ -82,7 +82,6 @@ class RadarGraph extends PureComponent {
     this.getData();
   }
 
-
   render() {
     return (
       <RadarChart cx={200} cy={200} outerRadius={200} width={400} height={400} data={this.state.data}>
@@ -91,6 +90,55 @@ class RadarGraph extends PureComponent {
         <PolarRadiusAxis />
         <Radar name="LC" dataKey="A" stroke="#ffffff" fill="lightblue" fillOpacity={0.6} />
       </RadarChart>
+    );
+  }
+}
+
+class MonthlyCost extends PureComponent {
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/9xopwa9v/';  
+
+  constructor(props){
+    super(props);
+    this.state = {
+      data: []
+    }
+  }
+
+
+  getData(){
+    setTimeout(() => {
+      const graphData = getMonthDataWithCost(allData);
+      this.setState({
+        data: graphData
+      })
+    }, 9000)
+    console.log(this.state.data)
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
+
+  render() {
+    return (
+      <ComposedChart
+        width={600}
+        height={350}
+        data={this.state.data}
+        margin={{
+          top: 10, right: 10, bottom: 10, left: 10,
+        }}
+      >
+        <CartesianGrid stroke="#ffffff" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Area type="monotone" dataKey="amt" fill="lightblue" stroke="#8884d8" />
+        <Bar dataKey="costBar" barSize={20} fill="#413ea0" />
+        <Line type="monotone" dataKey="costLine" stroke="yellow" />
+      </ComposedChart>
     );
   }
 }
@@ -227,6 +275,89 @@ function getDaysData(arr){
   return daysData;
 }
 
+function costReducer(arr){
+  return arr.reduce((x,y) => x+y.hoursrequested,0)*13.30;
+}
+
+function getMonthDataWithCost(arr){
+  const jan = arr.filter(x => x.requestdate.includes("-01-"));
+  const feb = arr.filter(x => x.requestdate.includes("-02-"));
+  const march = arr.filter(x => x.requestdate.includes("-03-"));
+  const april = arr.filter(x => x.requestdate.includes("-04-"));
+  const may = arr.filter(x => x.requestdate.includes("-05-"));
+  const june = arr.filter(x => x.requestdate.includes("-06-"));
+  const july = arr.filter(x => x.requestdate.includes("-07-"));
+  const aug = arr.filter(x => x.requestdate.includes("-08-"));
+  const sep = arr.filter(x => x.requestdate.includes("-09-"));
+  const oct = arr.filter(x => x.requestdate.includes("-10-"));
+  const nov = arr.filter(x => x.requestdate.includes("-11-"));
+  const dec = arr.filter(x => x.requestdate.includes("-12-"));
+
+  const janCost = costReducer(jan);
+  const febCost = costReducer(feb);
+  const marchCost = costReducer(march);
+  const aprilCost = costReducer(april);
+  const mayCost = costReducer(may);
+  const juneCost = costReducer(june);
+  const julyCost = costReducer(july);
+  const augCost = costReducer(aug);
+  const sepCost = costReducer(sep);
+  const octCost = costReducer(oct);
+  const novCost = costReducer(nov);
+  const decCost = costReducer(dec);
+
+  let currCostArr = [];
+  let currCost = 0;
+  let CostPerMonth = [janCost, febCost, marchCost, aprilCost, mayCost, juneCost, julyCost, augCost,
+                    sepCost,octCost, novCost, decCost]
+
+  for(let i = 0; i < CostPerMonth.length; i++){
+    currCost = currCost + CostPerMonth[i];
+    currCostArr.push(currCost);
+  }
+
+  const data = [
+    {
+      name: 'Jan', costLine: currCostArr[0], costBar: janCost, amt: currCostArr[0],
+    },
+    {
+      name: 'Feb', costLine: currCostArr[1], costBar: febCost, amt: currCostArr[1],
+    },
+    {
+      name: 'Mar', costLine: currCostArr[2], costBar: marchCost, amt: currCostArr[2],
+    },
+    {
+      name: 'Apr', costLine: currCostArr[3], costBar: aprilCost, amt: currCostArr[3],
+    },
+    {
+      name: 'May', costLine: currCostArr[4], costBar: mayCost, amt: currCostArr[4],
+    },
+    {
+      name: 'Jun', costLine: currCostArr[5], costBar: juneCost, amt: currCostArr[5],
+    },
+    {
+      name: 'Jul', costLine: currCostArr[6], costBar: julyCost, amt: currCostArr[6],
+    },
+    {
+      name: 'Aug', costLine: currCostArr[7], costBar: augCost, amt: currCostArr[7],
+    },
+    {
+      name: 'Sep', costLine: currCostArr[8], costBar: sepCost, amt: currCostArr[8],
+    },
+    {
+      name: 'Oct', costLine: currCostArr[9], costBar: octCost, amt: currCostArr[9],
+    },
+    {
+      name: 'Nov', costLine: currCostArr[10], costBar: novCost, amt: currCostArr[10],
+    },
+    {
+      name: 'Dec', costLine: currCostArr[11], costBar: decCost, amt: currCostArr[11],
+    },
+  ]
+    console.log(data);
+    return data;
+}
+
 function Stats() {
 
   const [totRequests, setValue] = useState(0);
@@ -254,6 +385,10 @@ function Stats() {
         <div className="App-header">
           Sick Time Requests Per Day Of The Week
           <RadarGraph/>
+        </div>
+        <div className="App-header">
+          Sick Time Cost Per Month
+          <MonthlyCost/>
         </div>
       </div>
     );
