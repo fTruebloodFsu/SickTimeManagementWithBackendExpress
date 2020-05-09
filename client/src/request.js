@@ -70,7 +70,7 @@ async function enterNewRequest(fn, ln, sn, d, s, h){
     //const results = await newRequest.json();
     console.log(newRequest.status);
     if(newRequest.status === 201){
-        alert("Request enetred for " + fn + " " + ln);
+        alert("Request entered for " + fn + " " + ln);
     }
 }
 
