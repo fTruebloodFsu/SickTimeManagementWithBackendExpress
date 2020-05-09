@@ -91,7 +91,7 @@ class MyFormCheckBetween extends React.Component {
         const errorsSub = validate(this.state.BeginDate, this.state.EndDate);
         
         if(allFalse(errorsSub)){
-            alert("no errors")
+            //alert("no errors")
             getRequestsBetween(this.state.BeginDate, this.state.EndDate);
         }
     }
