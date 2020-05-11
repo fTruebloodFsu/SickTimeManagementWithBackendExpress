@@ -40,6 +40,7 @@ function validate(firstName, lastName, storeNum, date, shift, hours) {
       selectedDate: date.length === 0,
       Shift: shift.length === 0,
       HoursUsed: !Number(hours),
+      Code: code.length === 0,
     };
   }
 
@@ -51,6 +52,7 @@ function allFalse(obj){
     if(obj.selectedDate === true) result = false;
     if(obj.Shift === true) result = false;
     if(obj.HoursUsed === true) result = false;
+    if(obj.Code === true) result = false;
 
     return result;
 }
@@ -99,7 +101,8 @@ class MyForm extends React.Component {
         StoreNumber: '',
         selectedDate: '',
         Shift: '',
-        HoursUsed: null
+        HoursUsed: null,
+        Code: '',
       };
     }
 
@@ -114,9 +117,9 @@ class MyForm extends React.Component {
         event.preventDefault();
         const errorsSub = validate(this.state.FirstName, this.state.LastName, 
             this.state.StoreNumber, this.state.selectedDate,
-            this.state.Shift, this.state.HoursUsed);
+            this.state.Shift, this.state.HoursUsed, this.state.Code);
         
-        if(allFalse(errorsSub)){
+        if(allFalse(errorsSub && && this.state.Code === process.env.secret_code)){
             //alert("no errors");
             let fn = removeInvalidChars(this.state.FirstName);
             let ln = removeInvalidChars(this.state.LastName);
@@ -140,7 +143,7 @@ class MyForm extends React.Component {
     render() {
     const errors = validate(this.state.FirstName, this.state.LastName, 
         this.state.StoreNumber, this.state.selectedDate,
-        this.state.Shift, this.state.HoursUsed);
+        this.state.Shift, this.state.HoursUsed, this.state.Code);
       return (
         <div>
             <form style={formStyle}>
@@ -277,6 +280,24 @@ class MyForm extends React.Component {
                     />
                     <div>
                         {errors.HoursUsed ? <p className="errorMessage">*Please Enter The Number Of Hours</p> : <p></p>}
+                    </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs = {4}>
+                        <p>Code:</p>
+                    </Col>
+                    <Col xs = {6}> 
+                    <input
+                    className={errors.Code ? "error" : "success"}
+                    type='text'
+                    name='Code'
+                    placeholder='??'
+                    value={this.state.Code}
+                    onChange={this.myChangeHandler}
+                    />
+                    <div>
+                        {errors.Code ? <p className="errorMessage">*??</p> : <p></p>}
                     </div>
                     </Col>
                 </Row>
