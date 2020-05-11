@@ -118,7 +118,7 @@ class MyForm extends React.Component {
             this.state.StoreNumber, this.state.selectedDate,
             this.state.Shift, this.state.HoursUsed, this.state.Code);
         
-        if(allFalse(errorsSub) && this.state.Code === process.env.secret_code){
+        if(allFalse(errorsSub) && this.state.Code == process.env.secret_code){
             //alert("no errors");
             let fn = removeInvalidChars(this.state.FirstName);
             let ln = removeInvalidChars(this.state.LastName);
