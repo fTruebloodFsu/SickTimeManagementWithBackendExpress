@@ -3,8 +3,6 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import './index.css';
 import "react-datepicker/dist/react-datepicker.css";
 
-const secret_code = "3121";
-
 const formStyle = {
     backgroundColor: '#212529', 
     color: 'white',
@@ -120,7 +118,7 @@ class MyForm extends React.Component {
             this.state.StoreNumber, this.state.selectedDate,
             this.state.Shift, this.state.HoursUsed, this.state.Code);
         
-        if(allFalse(errorsSub && && this.state.Code === secret_code)){
+        if(allFalse(errorsSub && this.state.Code === process.env.secret_code)){
             //alert("no errors");
             let fn = removeInvalidChars(this.state.FirstName);
             let ln = removeInvalidChars(this.state.LastName);
