@@ -31,7 +31,7 @@ const formStyle = {
 // }
 
 
-function validate(firstName, lastName, storeNum, date, shift, hours) {
+function validate(firstName, lastName, storeNum, date, shift, hours, code) {
     return {
       FirstName: firstName.length === 0,
       LastName: lastName.length === 0,
