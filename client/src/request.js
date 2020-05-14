@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import './index.css';
 import "react-datepicker/dist/react-datepicker.css";
 
-const mySecret = "BigGuns";
+const mySecret = process.env.REACT_APP_SECRET_CODE;
 
 const formStyle = {
     backgroundColor: '#212529', 
