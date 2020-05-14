@@ -144,93 +144,24 @@ class MonthlyCost extends PureComponent {
 }
 
 function getGdata(arr){
-  const uniqueStoreNums = [...new Set(arr.map(x => x.storenum))];
-  console.log(uniqueStoreNums);
+  const d = new Date();
+  const year = d.getFullYear();
+  
+  const currYear = arr.filter(x => x.requestdate.includes(year));
+  
+  const uniqueStores = [...new Set(currYear.map(x => x.storenum))];
+  const sortedUniqueStores = uniqueStores.sort(function(a,b){return a-b});
+  
+  let graphData = [];
 
-  for(let i = 0; i < arr.length; i++){
-    console.log("store num: " + uniqueStoreNums[i] + " amount: " + arr.filter(x => x.storenum === uniqueStoreNums[i]).length)
+  for(let i = 0; i < sortedUniqueStores.length; i++){
+
+    let currStoreAmount = arr.filter(x => x.storenum === sortedUniqueStores[i]).length;
+
+    let currStore = {"name": sortedUniqueStores[i], "RL": currStoreAmount, "RB": currStoreAmount, "amt": currStoreAmount}
+    graphData.push(currStore);
   }
-
-  const st1 = arr.filter(x => x.storenum === 1).length
-  const st2 = arr.filter(x => x.storenum === 2).length
-  const st3 = arr.filter(x => x.storenum === 3).length
-  const st4 = arr.filter(x => x.storenum === 4).length
-  const st5 = arr.filter(x => x.storenum === 5).length
-  const st6 = arr.filter(x => x.storenum === 6).length
-  const st7 = arr.filter(x => x.storenum === 7).length
-  const st8 = arr.filter(x => x.storenum === 8).length
-  const st9 = arr.filter(x => x.storenum === 9).length
-  const st10 = arr.filter(x => x.storenum === 10).length
-  const st11 = arr.filter(x => x.storenum === 11).length
-  const st12 = arr.filter(x => x.storenum === 12).length
-  const st13 = arr.filter(x => x.storenum === 13).length
-  const st14 = arr.filter(x => x.storenum === 14).length
-  const st15 = arr.filter(x => x.storenum === 15).length
-  const st19 = arr.filter(x => x.storenum === 19).length
-  const st20 = arr.filter(x => x.storenum === 20).length
-  const st21 = arr.filter(x => x.storenum === 21).length
-  const st22 = arr.filter(x => x.storenum === 22).length
-
-  const graphData = [
-  {
-    name: '1', RL: st1, RB: st1, amt: st1,
-  },
-  {
-    name: '2', RL: st2, RB: st2, amt: st2,
-  },
-  {
-    name: '3', RL: st3, RB: st3, amt: st3,
-  },
-  {
-    name: '4', RL: st4, RB: st4, amt: st4,
-  },
-  {
-    name: '5', RL: st5, RB: st5, amt: st5,
-  },
-  {
-    name: '6', RL: st6, RB: st6, amt: st6,
-  },
-  {
-    name: '7', RL: st7, RB: st7, amt: st7,
-  },
-  {
-    name: '8', RL: st8, RB: st8, amt: st8,
-  },
-  {
-    name: '9', RL: st9, RB: st9, amt: st9,
-  },
-  {
-    name: '10', RL: st10, RB: st10, amt: st10,
-  },
-  {
-    name: '11', RL: st11, RB: st11, amt: st11,
-  },
-  {
-    name: '12', RL: st12, RB: st12, amt: st12,
-  },
-  {
-    name: '13', RL: st13, RB: st13, amt: st13,
-  },
-  {
-    name: '14', RL: st14, RB: st14, amt: st14,
-  },
-  {
-    name: '15', RL: st15, RB: st15, amt: st15,
-  },
-  {
-    name: '19', RL: st19, RB: st19, amt: st19,
-  },
-  {
-    name: '20', RL: st20, RB: st20, amt: st20,
-  },
-  {
-    name: '21', RL: st21, RB: st21, amt: st21,
-  },
-  {
-    name: '22', RL: st22, RB: st22, amt: st22,
-  },
-  ]
-  console.log(graphData);
+  
   
   return graphData;
 }
