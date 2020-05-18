@@ -43,13 +43,26 @@ async function getRequestsBetween(begin, end){
     return results.length;
 }
 
+function hoursReducer(arr){
+    return arr.reduce((x,y) => x+y.hoursrequested,0);
+}
+
 function displayResultsReact(arr){
+    
+    const uniqueNames = [...new Set(arr.map(x => (x.firstname + " " + x.lastname)))]
+    let objOfNamesAndHours = [];
+
+    for(let i = 0; i < uniqueNames.length; i++){
+        let currLen = arr.filter(x => (x.firstname + " " + x.lastname) === uniqueNames[i]);
+        let newEle = {"name": uniqueNames[i], "hours": hoursReducer(currLen)}
+        objOfNamesAndHours.push(newEle);
+      }
 
     let resultList = document.getElementById("checkResults");
 
-    for(let i = 0; i < arr.length; i++){
+    for(let i = 0; i < objOfNamesAndHours.length; i++){
         
-        let currEle = arr[i];
+        let currEle = objOfNamesAndHours[i];
         let newDiv = document.createElement("div");
         newDiv.id = currEle.id;
 
@@ -62,8 +75,7 @@ function displayResultsReact(arr){
 
         newDiv.innerHTML = "";
         let x = i + 1;
-        newDiv.innerHTML += x + ". " + currEle.firstname + " " + currEle.lastname + " used " + 
-                            currEle.hoursrequested + " hours on " + currEle.requestdate;
+        newDiv.innerHTML += x + ". " + currEle.name + " used " + currEle.hours + " hours";
 
         resultList.appendChild(newDiv)
     }
